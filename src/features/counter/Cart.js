@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { buy, selectmyCart } from './cartSlice';
+import { buy, checkoutAsync, selectStatus, selectmyCart } from './cartSlice';
 
 
 export function Cart() {
     const myCart = useSelector(selectmyCart);
+    const status = useSelector(selectStatus);
     const dispatch = useDispatch();
-    
 
     return (
         <div>
@@ -16,6 +16,8 @@ export function Cart() {
                 prodName : {item.prodName},
                 price : {item.price}
             </div>)}
+            <button onClick={() => dispatch(checkoutAsync(myCart))}>Checkout</button>
+            {status}
         </div>
     );
 }

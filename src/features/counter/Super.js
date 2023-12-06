@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { buy, selectmyCart } from './cartSlice';
-import { selectProducts } from './superSlice';
+import { getDataAsync, selectProducts } from './superSlice';
 
 
 export function Super() {
     const superProducts = useSelector(selectProducts);
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        dispatch(getDataAsync())
+    }, [])
+
     return (
-        <div>
+        <div style={{backgroundColor:"gray"}}>
             {superProducts.map((item, ind) => <div key={ind}>
                 prodName : {item.prodName},
                 price : {item.price}
