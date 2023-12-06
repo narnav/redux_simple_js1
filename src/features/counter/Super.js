@@ -17,7 +17,7 @@ export function Super() {
             {superProducts.map((item, ind) => <div key={ind}>
                 prodName : {item.prodName},
                 price : {item.price}
-                <button onClick={() => dispatch(buy({ id: item.id, prodName: 'also_test', price: 1 }))}>Buy</button>
+                <button onClick={() => dispatch(buy(item))}>Buy</button>
             </div>)}
         </div>
     );
